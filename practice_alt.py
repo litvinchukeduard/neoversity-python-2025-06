@@ -57,7 +57,7 @@ weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 
 money_spent_during_the_week = []
 
 # for i in range(0, 7): # 0, 1, 2, 3, 4, 5, 6
-for i in range(7):
+for i in range(2):
     day = weekdays[i]
     money_spent_during_the_week.append(try_getting_number_from_user(f"Please enter money spent on {day}: "))
 
@@ -69,5 +69,17 @@ for i in range(7):
 # money_spent_during_the_week.append(try_getting_number_from_user("Please enter money spent on Wednesday: "))
 
 print(money_spent_during_the_week)
+
+sum_of_money_spent = sum(money_spent_during_the_week)
+print(f"Money spent during the week: {sum_of_money_spent}")
+
+print(f"Difference: {weekly_budget - sum_of_money_spent}")
+
+# print(sum([1, 2, 3]))
+# print(300.0([1, 2, 3]))
+
+# list = [1, 2, 3], sum, abs
+
+
 
 # spending = (monday_money_spent, tuesday_money_spent, wednesday_money_spent)
