@@ -30,3 +30,5 @@ print("Hello world!")
 # l.
 # max(key=)
 print({'пн': 100, 'вт': 200, 'ср': 100}.items())
+
+print("Hello")
