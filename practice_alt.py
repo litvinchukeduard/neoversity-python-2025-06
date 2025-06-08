@@ -52,14 +52,21 @@ print(f"Budget for the week is {weekly_budget}")
 # d = {0: 100, 1: 200}
 # spendings = {'Monday': 100, 'Tuesday': 200}
 
+weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 money_spent_during_the_week = []
 
-# Monday
-money_spent_during_the_week.append(try_getting_number_from_user("Please enter money spent on Monday: "))
-# Tuesday
-money_spent_during_the_week.append(try_getting_number_from_user("Please enter money spent on Monday: "))
-# Wednesday
-money_spent_during_the_week.append(try_getting_number_from_user("Please enter money spent on Monday: "))
+# for i in range(0, 7): # 0, 1, 2, 3, 4, 5, 6
+for i in range(7):
+    day = weekdays[i]
+    money_spent_during_the_week.append(try_getting_number_from_user(f"Please enter money spent on {day}: "))
+
+# # Monday
+# money_spent_during_the_week.append(try_getting_number_from_user("Please enter money spent on Monday: "))
+# # Tuesday
+# money_spent_during_the_week.append(try_getting_number_from_user("Please enter money spent on Tuesday: "))
+# # Wednesday
+# money_spent_during_the_week.append(try_getting_number_from_user("Please enter money spent on Wednesday: "))
 
 print(money_spent_during_the_week)
 
