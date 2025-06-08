@@ -17,9 +17,16 @@ print("Hello world!")
 # print(t[0])
 # print(t)
 
-sum_function = sum
-print(sum_function([1, 2, 3]))
+# sum_function = sum
+# print(sum_function([1, 2, 3]))
 
-sum_function = 100 + 200
-print(sum_function([1, 2, 3]))
-#print(300([1, 2, 3]))
+# sum_function = 100 + 200
+# print(sum_function([1, 2, 3]))
+# #print(300([1, 2, 3]))
+
+# print(max([100.0, 200.0, 300.0]))
+# l = [100.0, 200.0, 300.0]
+# max_value = max(l)
+# l.
+# max(key=)
+print({'пн': 100, 'вт': 200, 'ср': 100}.items())

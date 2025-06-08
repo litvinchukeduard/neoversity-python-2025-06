@@ -83,3 +83,8 @@ print(f"Difference: {weekly_budget - sum_of_money_spent}")
 
 
 # spending = (monday_money_spent, tuesday_money_spent, wednesday_money_spent)
+
+# enumerate
+
+# [100.0, 200.0, 300.0]
+
