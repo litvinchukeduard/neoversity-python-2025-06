@@ -1,5 +1,9 @@
+# from cat import 
+
 import sys
 from itertools import zip_longest
+
+from colorama import Fore, Back, Style
 '''
 Потрібно написати схожий додаток на diff
 
@@ -32,8 +36,8 @@ def compare_two_files(file_one_path: str, file_two_path: str):
     for number, (file_one_line, file_two_line) in enumerate(zip_longest(file_one_lines_list, file_two_lines_list, fillvalue='')):
         if file_one_line != file_two_line:
             print(f'Line number: {number + 1}')
-            print(f'< {file_one_line.rstrip()}')
-            print(f'> {file_two_line.rstrip()}')
+            print(f'{Fore.RED}< {file_one_line.rstrip()}{Style.RESET_ALL}')
+            print(f'{Fore.GREEN}> {file_two_line.rstrip()}{Style.RESET_ALL}')
             print()
     
     # for i in range(len(file_one_lines_list)):
