@@ -1,4 +1,5 @@
 # Якщо є set, list або tuple, str
+import colorama
 
 my_list = {'a', 'b', 'c'}
 # my_list = "abc"
