@@ -51,6 +51,11 @@ class Playlist:
         # if key > len(self.songs):
         #     raise IndexError # This is not needed because we use list
         return self.songs[key]
+    
+    def __setitem__(self, key, value):
+        if not isinstance(value, Song):
+            raise ValueError
+        self.songs[key] = value
 
     def add_song(self, data):
         if isinstance(data, Song):
@@ -68,8 +73,8 @@ class Playlist:
 if __name__ == '__main__':
     playlist = Playlist("Playlist One")
     songs_list = []
-    song_one = Song('Author One', 'Song One', 100)
-    song_two = Song('Author Two', 'Song Two', 250)
+    song_one = Song('Author One', 'Song One', [], 100)
+    song_two = Song('Author Two', 'Song Two', [], 250)
     songs_list.append(song_one)
     songs_list.append(song_two)
 
@@ -80,7 +85,9 @@ if __name__ == '__main__':
 
     playlist + song_one
     playlist + song_two
-    print(playlist[0])
+
+    playlist[0] = Song("Author One", "Song Three", [], 200)
+    print(playlist)
 
     # playlist - song_one
     # print(playlist)
