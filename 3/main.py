@@ -1,4 +1,5 @@
 from typing import Iterable
+from functools import total_ordering
 '''
 Написати додаток, який допомагає керувати піснями
 
@@ -7,9 +8,12 @@ Song (author, title, duration)
 Playlist (Collection of Songs) 
 
 Playlist(Userlist)
+
+__str__, __repr__, __eq__, __hash__, __lt__
 '''
 
 
+@total_ordering
 class Song:
     def __init__(self, author: str, title: str, genres: list[str], duration_in_seconds: int = 0):
         self.author = author
@@ -17,12 +21,18 @@ class Song:
         self.genres = genres
         self.duration_in_seconds = duration_in_seconds
 
-    def __str__(self) -> str:
-        return f'Song(author={self.author}, title={self.title}, duration_in_seconds={self.duration_in_seconds})'
+    def __eq__(self, other):
+        return self.author == other.author and self.title == other.title
+    
+    def __lt__(self, other):
+        return self.duration_in_seconds < other.duration
 
-    def __repr__(self):
-        # return f'Song(author={self.author}, title={self.title})'
-        return f'"{self.title}" by {self.author}'
+    # def __str__(self) -> str:
+    #     return f'Song(author={self.author}, title={self.title}, duration_in_seconds={self.duration_in_seconds})'
+
+    # def __repr__(self):
+    #     # return f'Song(author={self.author}, title={self.title})'
+    #     return f'"{self.title}" by {self.author}'
 
 
 class Playlist:
@@ -71,23 +81,29 @@ class Playlist:
         return f'Playlist({self.songs})'
 
 if __name__ == '__main__':
-    playlist = Playlist("Playlist One")
-    songs_list = []
-    song_one = Song('Author One', 'Song One', [], 100)
-    song_two = Song('Author Two', 'Song Two', [], 250)
-    songs_list.append(song_one)
-    songs_list.append(song_two)
+    song_one = Song('Author One', 'Song Two', [], 100)
+    song_two = Song('Author One', 'Song Two', [], 100)
+    print(song_one)
+    print(song_two)
+    print(song_one == song_two)
+    # print('0x102b127b0>' == '0x102abf890')
+    # playlist = Playlist("Playlist One")
+    # songs_list = []
+    # song_one = Song('Author One', 'Song One', [], 100)
+    # song_two = Song('Author Two', 'Song Two', [], 250)
+    # songs_list.append(song_one)
+    # songs_list.append(song_two)
 
-    # playlist + songs_list
-    # playlist + songs_list
-    # playlist + songs_list
+    # # playlist + songs_list
+    # # playlist + songs_list
+    # # playlist + songs_list
 
 
-    playlist + song_one
-    playlist + song_two
+    # playlist + song_one
+    # playlist + song_two
 
-    playlist[0] = Song("Author One", "Song Three", [], 200)
-    print(playlist)
+    # playlist[0] = Song("Author One", "Song Three", [], 200)
+    # print(playlist)
 
     # playlist - song_one
     # print(playlist)
