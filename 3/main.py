@@ -32,12 +32,25 @@ class Playlist:
         # self.songs = magic_list()
         self.songs = []
 
+    def __isub__(self, data):
+        if isinstance(data, Song):
+            self.songs.remove(data)
+        return self
+
+    def __sub__(self, data):
+        return self.__isub__(data)
+
     def __iadd__(self, song: Song):
         return self.__add__(song)
 
     def __add__(self, data):
         self.add_song(data)
         return self
+    
+    def __getitem__(self, key: int):
+        # if key > len(self.songs):
+        #     raise IndexError # This is not needed because we use list
+        return self.songs[key]
 
     def add_song(self, data):
         if isinstance(data, Song):
@@ -60,13 +73,17 @@ if __name__ == '__main__':
     songs_list.append(song_one)
     songs_list.append(song_two)
 
-    playlist + songs_list
-    playlist + songs_list
-    playlist + songs_list
+    # playlist + songs_list
+    # playlist + songs_list
+    # playlist + songs_list
 
 
     playlist + song_one
-    print(playlist)
+    playlist + song_two
+    print(playlist[0])
+
+    # playlist - song_one
+    # print(playlist)
 
     # songs_list.append(song_one)
     # songs_list.append(song_two)
