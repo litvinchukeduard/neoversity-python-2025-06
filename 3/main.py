@@ -27,12 +27,12 @@ class Song:
     def __lt__(self, other):
         return self.duration_in_seconds < other.duration
 
-    # def __str__(self) -> str:
-    #     return f'Song(author={self.author}, title={self.title}, duration_in_seconds={self.duration_in_seconds})'
+    def __str__(self) -> str:
+        return f'Song(author={self.author}, title={self.title}, duration_in_seconds={self.duration_in_seconds})'
 
-    # def __repr__(self):
-    #     # return f'Song(author={self.author}, title={self.title})'
-    #     return f'"{self.title}" by {self.author}'
+    def __repr__(self):
+        # return f'Song(author={self.author}, title={self.title})'
+        return f'"{self.title}" by {self.author}'
 
 
 class Playlist:
@@ -64,16 +64,8 @@ class Playlist:
 
     def __iter__(self):
         '''Початок перебирання елементів (виклик iter). Має повертати щось що має метод __next___'''
-        self.current_song_index = 0
-        return self
-
-    def __next__(self):
-        '''Повернення наступного елемента (виклик next)'''
-        if self.current_song_index >= len(self.songs): # 0 1 2
-            raise StopIteration
-        next_song = self.songs[self.current_song_index]
-        self.current_song_index += 1
-        return next_song
+        # self.current_song_index = 0
+        return PlaylistIterator(self.songs)
     
     def __setitem__(self, key, value):
         if not isinstance(value, Song):
@@ -92,10 +84,25 @@ class Playlist:
 
     def __str__(self) -> str:
         return f'Playlist({self.songs})'
+    
+
+class PlaylistIterator:
+    def __init__(self, songs): # copy/deepcopy
+        self.songs = songs # Modifying this list will modify list in Playlist
+        self.current_song_index = 0
+
+    def __next__(self):
+        '''Повернення наступного елемента (виклик next)'''
+        if self.current_song_index >= len(self.songs): # 0 1 2
+            raise StopIteration
+        next_song = self.songs[self.current_song_index]
+        self.current_song_index += 1
+        return next_song
 
 if __name__ == '__main__':
-    song_one = Song('Author One', 'Song Two', [], 100)
+    song_one = Song('Author One', 'Song One', [], 100)
     song_two = Song('Author One', 'Song Two', [], 100)
+    song_three = Song('Author One', 'Song Three', [], 100)
     # print(song_one)
     # print(song_two)
     # print(song_one == song_two)
@@ -114,9 +121,20 @@ if __name__ == '__main__':
 
     playlist + song_one
     playlist + song_two
+    playlist + song_three
 
-    for song in playlist:
-        print(song)
+    iterator = iter(playlist)
+    print(next(iterator))
+
+    iterator_two = iter(playlist)
+    print(next(iterator_two))
+    print(next(iterator_two))
+
+    print(next(iterator))
+
+
+    # for song in playlist:
+    #     print(song)
 
     # playlist[0] = Song("Author One", "Song Three", [], 200)
     # print(playlist)
