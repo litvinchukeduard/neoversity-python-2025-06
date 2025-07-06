@@ -57,10 +57,23 @@ class Playlist:
         self.add_song(data)
         return self
     
-    def __getitem__(self, key: int):
-        # if key > len(self.songs):
-        #     raise IndexError # This is not needed because we use list
-        return self.songs[key]
+    # def __getitem__(self, key: int):
+    #     # if key > len(self.songs):
+    #     #     raise IndexError # This is not needed because we use list
+    #     return self.songs[key]
+
+    def __iter__(self):
+        '''Початок перебирання елементів (виклик iter). Має повертати щось що має метод __next___'''
+        self.current_song_index = 0
+        return self
+
+    def __next__(self):
+        '''Повернення наступного елемента (виклик next)'''
+        if self.current_song_index >= len(self.songs): # 0 1 2
+            raise StopIteration
+        next_song = self.songs[self.current_song_index]
+        self.current_song_index += 1
+        return next_song
     
     def __setitem__(self, key, value):
         if not isinstance(value, Song):
@@ -83,24 +96,27 @@ class Playlist:
 if __name__ == '__main__':
     song_one = Song('Author One', 'Song Two', [], 100)
     song_two = Song('Author One', 'Song Two', [], 100)
-    print(song_one)
-    print(song_two)
-    print(song_one == song_two)
+    # print(song_one)
+    # print(song_two)
+    # print(song_one == song_two)
     # print('0x102b127b0>' == '0x102abf890')
-    # playlist = Playlist("Playlist One")
+    playlist = Playlist("Playlist One")
     # songs_list = []
     # song_one = Song('Author One', 'Song One', [], 100)
     # song_two = Song('Author Two', 'Song Two', [], 250)
     # songs_list.append(song_one)
     # songs_list.append(song_two)
 
-    # # playlist + songs_list
-    # # playlist + songs_list
-    # # playlist + songs_list
+    # playlist + songs_list
+    # playlist + songs_list
+    # playlist + songs_list
 
 
-    # playlist + song_one
-    # playlist + song_two
+    playlist + song_one
+    playlist + song_two
+
+    for song in playlist:
+        print(song)
 
     # playlist[0] = Song("Author One", "Song Three", [], 200)
     # print(playlist)
