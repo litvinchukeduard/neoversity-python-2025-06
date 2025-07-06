@@ -1,3 +1,4 @@
+from typing import Iterable
 '''
 Написати додаток, який допомагає керувати піснями
 
@@ -31,22 +32,41 @@ class Playlist:
         # self.songs = magic_list()
         self.songs = []
 
-    def __add__(self, song: Song):
-        self.add_song(song)
+    def __iadd__(self, song: Song):
+        return self.__add__(song)
+
+    def __add__(self, data):
+        self.add_song(data)
         return self
 
-    def add_song(self, song: Song):
-        if not isinstance(song, Song):
-            raise ValueError("Can only add songs to playlist")
-        self.songs.append(song)
+    def add_song(self, data):
+        if isinstance(data, Song):
+            self.songs.append(data)
+        elif isinstance(data, Iterable):
+            self.songs += data
+        # elif isinstance(data, set):
+        #     ...
+            # raise ValueError("Can only add songs to playlist")
+        
 
     def __str__(self) -> str:
         return f'Playlist({self.songs})'
 
 if __name__ == '__main__':
-    # songs_list = []
-    # song_one = Song('Author One', 'Song One', 100)
-    # song_two = Song('Author Two', 'Song Two', 250)
+    playlist = Playlist("Playlist One")
+    songs_list = []
+    song_one = Song('Author One', 'Song One', 100)
+    song_two = Song('Author Two', 'Song Two', 250)
+    songs_list.append(song_one)
+    songs_list.append(song_two)
+
+    playlist + songs_list
+    playlist + songs_list
+    playlist + songs_list
+
+
+    playlist + song_one
+    print(playlist)
 
     # songs_list.append(song_one)
     # songs_list.append(song_two)
@@ -55,18 +75,18 @@ if __name__ == '__main__':
 
     # print(f"My favorite song is: {song_two!r}")
 
-    playlist = Playlist("Playlist One") # "Playlist One", ["Song One" by Author One]
-    playlist_two = Playlist("Playlist Two") # "Playlist Two", []
-    song_one = Song('Author One', 'Song One', 100)
+    # playlist = Playlist("Playlist One") # "Playlist One", ["Song One" by Author One]
+    # playlist_two = Playlist("Playlist Two") # "Playlist Two", []
+    # song_one = Song('Author One', 'Song One', 100)
 
-    # playlist.add_song(song_one)
+    # # playlist.add_song(song_one)
 
-    # playlist.songs += [song_one]
+    # # playlist.songs += [song_one]
     # playlist += song_one
-    print(playlist + song_one)
-    playlist + song_one
-    playlist + song_one
+    # # print(playlist + song_one + song_two)
+    # # playlist + song_one
+    # # playlist + song_one
 
-    print(playlist.songs)
+    # print(playlist.songs)
 
-    print(playlist_two.songs)
+    # print(playlist_two.songs)
