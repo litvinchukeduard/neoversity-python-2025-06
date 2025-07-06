@@ -66,6 +66,15 @@ class Playlist:
         '''Початок перебирання елементів (виклик iter). Має повертати щось що має метод __next___'''
         # self.current_song_index = 0
         return PlaylistIterator(self.songs)
+        # return self
+    
+    # def __next__(self):
+    #     '''Повернення наступного елемента (виклик next)'''
+    #     if self.current_song_index >= len(self.songs): # 0 1 2
+    #         raise StopIteration
+    #     next_song = self.songs[self.current_song_index]
+    #     self.current_song_index += 1
+    #     return next_song
     
     def __setitem__(self, key, value):
         if not isinstance(value, Song):
@@ -126,11 +135,11 @@ if __name__ == '__main__':
     iterator = iter(playlist)
     print(next(iterator))
 
-    iterator_two = iter(playlist)
-    print(next(iterator_two))
-    print(next(iterator_two))
+    # iterator_two = iter(playlist)
+    # print(next(iterator_two))
+    # print(next(iterator_two))
 
-    print(next(iterator))
+    # print(next(iterator))
 
 
     # for song in playlist:
